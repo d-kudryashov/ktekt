@@ -1,15 +1,16 @@
-package main;
+package main.db;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import javax.sql.DataSource;
 
 @Configuration
+@EnableJpaRepositories("main.db.repositories")
 @PropertySource("META-INF/application-${spring.profiles.active}.properties")
 public class DataSourceBean {
 
