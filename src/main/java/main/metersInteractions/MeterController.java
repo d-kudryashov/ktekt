@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -36,5 +37,10 @@ public class MeterController {
         } else {
             throw new ForbiddenException();
         }
+    }
+
+    @RequestMapping(value = "/meter/{meterId}/meterData", method = RequestMethod.GET)
+    public @ResponseBody List<MeterData> getMeterData(@PathVariable(name = "meterId") int meterId) {
+        return meterDataRepository.findByMeterId(meterId);
     }
 }

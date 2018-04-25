@@ -1,13 +1,16 @@
 package main.db.entities;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 import main.metersInteractions.ValueType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity(name = "meterData")
-public class MeterData {
+public class MeterData implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,6 +29,7 @@ public class MeterData {
     private double value;
 
     @Column(name = "time", nullable = false)
+    @JsonSerialize(using = DateSerializer.class)
     private Date dateTime;
 
     public MeterData() {

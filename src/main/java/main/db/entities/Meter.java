@@ -1,9 +1,14 @@
 package main.db.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity(name = "meters")
-public class Meter {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Meter implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -11,6 +16,7 @@ public class Meter {
     private int id;
 
     @Column(name = "apiKey", nullable = false, unique = true)
+    @JsonIgnore
     private String apiKey;
 
     public Meter() {
