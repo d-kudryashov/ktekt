@@ -9,7 +9,8 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity(name = "meterData")
+@Entity
+@Table(name = "meter_data")
 public class MeterData implements Serializable {
 
     @Id
